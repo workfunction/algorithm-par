@@ -6,7 +6,7 @@ int main() {
     LIST* list = init_list();
     int input[100];
     for (int i = 0; i < 100; i++) {
-        input[i] = i;
+        input[i] = rand()%100;
         list->insert_head(list, &input[i]);
     }
     list->print_list(list);
@@ -19,4 +19,8 @@ int main() {
     printf("\n\n");
     i = 200;
     printf("%d", list->find_node(list, &i));
+    printf("\n\n");
+    list->sort_list(list);
+    list->print_list(list);
+    printf("\n\n");
 }

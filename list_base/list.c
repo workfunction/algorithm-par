@@ -57,18 +57,70 @@ NODE* visit_node(LIST* list, int index) {
     return curr;
 }
 
-void merge_sort(NODE* head, int front, int end) {
+void split_list(NODE* source, NODE** front_ref, NODE** back_ref) {
+    NODE* fast;
+    NODE* slow;
+    
+    slow = source;
+    fast = source->next;
 
+    while (fast != NULL) { 
+        fast = fast->next; 
+        if (fast != NULL) { 
+            slow = slow->next; 
+            fast = fast->next; 
+        } 
+    }
+
+    *front_ref = source;
+    *back_ref = slow->next;
+    slow->next = NULL;
+}
+
+NODE* sort_merge(NODE* a, NODE* b) {
+    NODE* result = NULL; 
+  
+    if (a == NULL) 
+        return (b); 
+    else if (b == NULL) 
+        return (a); 
+  
+    if (GET_INT(a->value) <= GET_INT(b->value)) { 
+        result = a; 
+        result->next = sort_merge(a->next, b); 
+    } 
+    else { 
+        result = b; 
+        result->next = sort_merge(a, b->next); 
+    } 
+    return (result); 
+}
+
+void merge_sort(NODE** head_ref) {
+    NODE* head = *head_ref;
+    NODE* a;
+    NODE* b;
+
+    if ((head == NULL) || (head->next == NULL)) { 
+        return; 
+    }
+
+    split_list(head, &a, &b);
+
+    merge_sort(&a);
+    merge_sort(&b);
+
+    *head_ref = sort_merge(a, b);
 }
 
 void sort_list(LIST* list) {
-    merge_sort(list->head, 0, list->size-1);
+    merge_sort(&(list->head));
 }
 
 void print_list (LIST* list) {
     NODE* curr = list->head;
     while (curr != NULL){
-        printf("%d  ", GET_INT(curr->value));
+        printf("%d\t ", GET_INT(curr->value));
         curr = curr->next;
     }
 }
