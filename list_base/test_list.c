@@ -15,7 +15,7 @@ int main() {
     list->print_list(list);
     printf("\n\n");
     int i = 5;
-    printf("%d", *(int*)(list->find_node(list, &i)->value));
+    printf("%d", GET_INT(list->find_node(list, &i)->value));
     printf("\n\n");
     i = 200;
     printf("%d", list->find_node(list, &i));

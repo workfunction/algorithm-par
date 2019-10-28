@@ -1,6 +1,8 @@
 typedef struct node_t NODE;
 typedef struct list_t LIST;
 
+#define GET_INT(v) *(int*)((v))
+
 struct node_t
 {
     void *value;

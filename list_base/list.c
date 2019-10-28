@@ -39,7 +39,7 @@ NODE* remove_head(LIST* list) {
 
 NODE* find_node(LIST* list, void *value) {
     NODE *node = list->head;
-    while (node != NULL && *(int*)(node->value) != *(int*)value) {
+    while (node != NULL && GET_INT(node->value) != GET_INT(value)) {
         node = node->next;
     }
     return node;
@@ -68,7 +68,7 @@ void sort_list(LIST* list) {
 void print_list (LIST* list) {
     NODE* curr = list->head;
     while (curr != NULL){
-        printf("%d  ", *(int*)(curr->value));
+        printf("%d  ", GET_INT(curr->value));
         curr = curr->next;
     }
 }
