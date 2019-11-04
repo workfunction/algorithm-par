@@ -49,14 +49,6 @@ void remove_node(LIST* list, void *value) {
 
 }
 
-NODE* visit_node(LIST* list, int index) {
-    NODE* curr = list->head;
-    while (index--) {
-        curr = curr->next;
-    }
-    return curr;
-}
-
 void split_list(NODE* source, NODE** front_ref, NODE** back_ref) {
     NODE* fast;
     NODE* slow;
@@ -113,8 +105,19 @@ void merge_sort(NODE** head_ref) {
     *head_ref = sort_merge(a, b);
 }
 
-void sort_list(LIST* list) {
-    merge_sort(&(list->head));
+void sort_list(LIST* list, int method) {
+    switch(method)
+    {
+    case 0:
+        merge_sort(&(list->head));
+        break;
+    case 1:
+        //merge_sort(&(list->head));
+        break;
+    default:
+        break;
+    }
+    
 }
 
 void print_list (LIST* list) {

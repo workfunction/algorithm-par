@@ -18,7 +18,7 @@ struct list_t
     NODE*(*remove_head)(LIST* list);
     NODE*(*find_node)  (LIST* list, void *value);
     void (*remove_node)(LIST* list, void *value);
-    void (*sort_list)  (LIST* list);
+    void (*sort_list)  (LIST* list, int method);
     void (*print_list) (LIST* list);
 };
 

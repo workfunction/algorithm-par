@@ -20,7 +20,7 @@ int main() {
     i = 200;
     printf("%d", list->find_node(list, &i));
     printf("\n\n");
-    list->sort_list(list);
+    list->sort_list(list, 0);
     list->print_list(list);
     printf("\n\n");
 }
